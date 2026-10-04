@@ -1,0 +1,24 @@
+column,description,data_type,role
+date,Observation date,String,Input
+supplier_id,Unique supplier ID,String,Input
+supplier_name,Supplier name,String,Input
+supplier_country,Supplier country,String,Input
+supplier_reliability,Historical supplier reliability,Float,Input
+product_id,Unique product ID,String,Input
+product_name,Product/material name,String,Input
+category,Product category,String,Input
+demand_units,Expected demand quantity,Integer,Input
+inventory_units,Available inventory quantity,Integer,Input
+supplier_capacity_units,Supplier capacity,Integer,Input
+planned_lead_time_days,Expected lead time,Integer,Input
+actual_lead_time_days,Observed lead time,Integer,Outcome
+delay_occurred,Delay flag (0/1),Integer,Target
+delay_days,Number of delayed days,Integer,Target
+unit_cost_usd,Procurement cost per unit,Float,Input
+transport_cost_usd,Standard transportation cost,Float,Input
+secondary_supplier_premium_pct,Secondary supplier premium,Float,Input
+inventory_demand_ratio,Inventory divided by demand,Float,Derived
+estimated_primary_cost_usd,Estimated primary sourcing cost,Float,Derived
+estimated_secondary_cost_usd,Estimated secondary sourcing cost,Float,Derived
+air_freight_cost_usd,Estimated expedited air-freight cost,Float,Derived
+service_risk,Operational risk classification,String,Derived
