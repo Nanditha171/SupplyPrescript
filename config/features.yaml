@@ -1,0 +1,80 @@
+# =====================================================================
+# Supply Prescript — Feature Configuration & Metadata Specification
+# =====================================================================
+# Defines feature taxonomy, roles, pre-event vs post-event isolation
+# (leakage prevention), risk thresholds, and model input spaces.
+
+target:
+  classification: "delay_occurred"
+  regression: "delay_days"
+
+# Features known BEFORE shipment execution (Available for Day 6 predictive models)
+pre_event_features:
+  numerical:
+    - "demand_units"
+    - "inventory_units"
+    - "supplier_capacity_units"
+    - "supplier_reliability"
+    - "planned_lead_time_days"
+    - "unit_cost_usd"
+    - "transport_cost_usd"
+    - "secondary_supplier_premium_pct"
+  
+  derived:
+    - "inventory_coverage_ratio"
+    - "inventory_gap_units"
+    - "capacity_utilization"
+    - "cost_per_demand_unit"
+    - "secondary_cost_difference"
+    - "air_freight_premium"
+    - "supplier_risk_score"
+    - "demand_pressure"
+    - "shortage_flag"
+
+  historical_rolling:
+    - "previous_delay_days"
+    - "previous_delay_flag"
+    - "rolling_average_delay"
+    - "rolling_average_demand"
+    - "rolling_average_inventory"
+
+  categorical:
+    - "supplier_id"
+    - "supplier_country"
+    - "product_id"
+    - "category"
+
+  outlier_flags:
+    - "demand_outlier_flag"
+    - "inventory_outlier_flag"
+    - "cost_outlier_flag"
+    - "lead_time_outlier_flag"
+
+# Features observed ONLY AFTER delivery/event (strictly forbidden in predictive model training)
+post_event_features:
+  - "actual_lead_time_days"
+  - "delay_occurred"
+  - "delay_days"
+  - "lead_time_variance_days"
+  - "lead_time_risk"
+  - "service_risk"
+
+# Identifier and audit tracking columns
+metadata_columns:
+  - "date"
+  - "supplier_name"
+  - "product_name"
+  - "estimated_primary_cost_usd"
+  - "estimated_secondary_cost_usd"
+  - "air_freight_cost_usd"
+
+# Threshold parameters for operational rule engines
+thresholds:
+  lead_time_risk:
+    low_max_days: 0
+    medium_max_days: 3
+  service_risk:
+    high_inv_ratio_threshold: 0.70
+    medium_inv_ratio_threshold: 1.00
+    medium_reliability_threshold: 0.93
+  outlier_iqr_multiplier: 1.5

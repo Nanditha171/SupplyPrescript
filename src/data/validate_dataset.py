@@ -149,8 +149,15 @@ def validate_supply_chain_dataset(dataset_path: Path) -> bool:
 
 def main():
     base_dir = Path(__file__).resolve().parent.parent.parent
-    dataset_path = base_dir / "data" / "raw" / "supply_prescript_raw_dataset.csv"
-    validate_supply_chain_dataset(dataset_path)
+    raw_path = base_dir / "data" / "raw" / "supply_prescript_raw_dataset.csv"
+    processed_path = base_dir / "data" / "processed" / "supply_prescript_processed_dataset.csv"
+    
+    print("\n--- Validating Raw Dataset ---")
+    validate_supply_chain_dataset(raw_path)
+    
+    if processed_path.exists():
+        print("\n--- Validating Processed Dataset ---")
+        validate_supply_chain_dataset(processed_path)
 
 
 if __name__ == "__main__":
