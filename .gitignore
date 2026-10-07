@@ -40,3 +40,11 @@ htmlcov/
 # OS specific
 .DS_Store
 Thumbs.db
+
+# Environment & Database secrets
+.env
+*.env
+*.db
+*.sqlite
+*.sqlite3
+
