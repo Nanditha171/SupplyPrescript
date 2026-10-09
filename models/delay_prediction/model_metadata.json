@@ -1,0 +1,158 @@
+{
+  "model_name": "supply_delay_classifier",
+  "model_version": "1.0.0",
+  "selected_algorithm": "LogisticRegression",
+  "model_class": "LogisticRegression",
+  "training_timestamp": "2026-10-09T14:40:09.881604+00:00",
+  "training_dataset_path": "C:\\Users\\ADMIN\\Desktop\\Axlero\\SupplyPrescript\\data\\processed\\supply_prescript_processed_dataset.csv",
+  "target_column": "delay_occurred",
+  "date_column": "date",
+  "selected_features": [
+    "air_freight_premium",
+    "capacity_utilization",
+    "cost_outlier_flag",
+    "cost_per_demand_unit",
+    "demand_outlier_flag",
+    "demand_pressure",
+    "demand_units",
+    "inventory_coverage_ratio",
+    "inventory_gap_units",
+    "inventory_outlier_flag",
+    "inventory_units",
+    "lead_time_outlier_flag",
+    "planned_lead_time_days",
+    "previous_delay_days",
+    "previous_delay_flag",
+    "rolling_average_delay",
+    "rolling_average_demand",
+    "rolling_average_inventory",
+    "secondary_cost_difference",
+    "secondary_supplier_premium_pct",
+    "shortage_flag",
+    "supplier_capacity_units",
+    "supplier_reliability",
+    "supplier_risk_score",
+    "transport_cost_usd",
+    "unit_cost_usd",
+    "category",
+    "supplier_country",
+    "supplier_id"
+  ],
+  "numerical_features": [
+    "air_freight_premium",
+    "capacity_utilization",
+    "cost_outlier_flag",
+    "cost_per_demand_unit",
+    "demand_outlier_flag",
+    "demand_pressure",
+    "demand_units",
+    "inventory_coverage_ratio",
+    "inventory_gap_units",
+    "inventory_outlier_flag",
+    "inventory_units",
+    "lead_time_outlier_flag",
+    "planned_lead_time_days",
+    "previous_delay_days",
+    "previous_delay_flag",
+    "rolling_average_delay",
+    "rolling_average_demand",
+    "rolling_average_inventory",
+    "secondary_cost_difference",
+    "secondary_supplier_premium_pct",
+    "shortage_flag",
+    "supplier_capacity_units",
+    "supplier_reliability",
+    "supplier_risk_score",
+    "transport_cost_usd",
+    "unit_cost_usd"
+  ],
+  "categorical_features": [
+    "category",
+    "supplier_country",
+    "supplier_id"
+  ],
+  "transformed_feature_count": 43,
+  "train_record_count": 400,
+  "val_record_count": 100,
+  "test_record_count": 124,
+  "target_class_distribution": {
+    "train_positive_count": 50,
+    "train_negative_count": 350,
+    "train_delay_percentage": 12.5,
+    "scale_pos_weight": 7.0
+  },
+  "model_comparison": {
+    "LogisticRegression": {
+      "accuracy": 0.66,
+      "precision": 0.2,
+      "recall": 0.5384615384615384,
+      "f1": 0.2916666666666667,
+      "roc_auc": 0.7409372236958444,
+      "average_precision": 0.44507763021222996,
+      "brier_score": 0.20525487510342735
+    },
+    "RandomForest": {
+      "accuracy": 0.85,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.5428824049513705,
+      "average_precision": 0.17310057099644327,
+      "brier_score": 0.13656014914574993
+    },
+    "XGBoost": {
+      "accuracy": 0.85,
+      "precision": 0.375,
+      "recall": 0.23076923076923078,
+      "f1": 0.2857142857142857,
+      "roc_auc": 0.5658709106984969,
+      "average_precision": 0.2729067742820481,
+      "brier_score": 0.13234623160674958
+    }
+  },
+  "validation_metrics": {
+    "accuracy": 0.66,
+    "precision": 0.2,
+    "recall": 0.5384615384615384,
+    "f1": 0.2916666666666667,
+    "roc_auc": 0.7409372236958444,
+    "average_precision": 0.44507763021222996,
+    "brier_score": 0.20525487510342735
+  },
+  "test_metrics": {
+    "accuracy": 0.6854838709677419,
+    "precision": 0.2571428571428571,
+    "recall": 0.4090909090909091,
+    "f1": 0.3157894736842105,
+    "roc_auc": 0.6180926916221033,
+    "average_precision": 0.3429929912930066,
+    "brier_score": 0.21525530063666393
+  },
+  "classification_threshold": 0.5,
+  "risk_thresholds": {
+    "LOW": [
+      0.0,
+      0.3
+    ],
+    "MEDIUM": [
+      0.3,
+      0.6
+    ],
+    "HIGH": [
+      0.6,
+      0.8
+    ],
+    "CRITICAL": [
+      0.8,
+      1.01
+    ]
+  },
+  "random_seed": 42,
+  "library_versions": {
+    "scikit-learn": "1.7.2",
+    "xgboost": "3.2.0",
+    "joblib": "1.6.0",
+    "pandas": "2.3.3",
+    "numpy": "2.2.6"
+  }
+}
