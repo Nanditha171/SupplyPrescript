@@ -1,0 +1,8 @@
+{
+    "status": "success",
+    "recommended_action": "Air freight",
+    "estimated_cost": 11170.88,
+    "estimated_delay_days": 3.5,
+    "budget": 252719.34600000002,
+    "max_acceptable_delay_days": 9.799999999999999
+}
