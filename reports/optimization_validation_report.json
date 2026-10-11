@@ -1,0 +1,16 @@
+{
+    "project": "SupplyPrescript",
+    "validation": "Prescriptive Optimization",
+    "execution_time": "2026-10-11T10:25:18",
+    "test_module": "tests.test_prescriptive_solver",
+    "result": "PASSED",
+    "exit_code": 0,
+    "test_cases": [
+        "Regular supply selected when cheapest and feasible",
+        "Air freight selected when regular supply is too slow",
+        "Secondary supplier selected when cheapest and feasible",
+        "No feasible solution when budget is too low",
+        "No feasible solution when all options are too slow"
+    ],
+    "test_output": "test_air_freight_selected_when_regular_supply_is_too_slow (tests.test_prescriptive_solver.TestPrescriptiveSolver.test_air_freight_selected_when_regular_supply_is_too_slow) ... ok\ntest_no_feasible_solution_when_all_options_are_too_slow (tests.test_prescriptive_solver.TestPrescriptiveSolver.test_no_feasible_solution_when_all_options_are_too_slow) ... ok\ntest_no_feasible_solution_when_budget_is_too_low (tests.test_prescriptive_solver.TestPrescriptiveSolver.test_no_feasible_solution_when_budget_is_too_low) ... ok\ntest_regular_supply_selected_when_cheapest_and_feasible (tests.test_prescriptive_solver.TestPrescriptiveSolver.test_regular_supply_selected_when_cheapest_and_feasible) ... ok\ntest_secondary_supplier_selected_when_cheapest_feasible_option (tests.test_prescriptive_solver.TestPrescriptiveSolver.test_secondary_supplier_selected_when_cheapest_feasible_option) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.023s\n\nOK\n"
+}
