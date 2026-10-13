@@ -13,6 +13,7 @@ from src.database.models import (
     Inventory,
     SupplyEvent,
     Prediction,
+    RiskAssessment,
     OptimizationRun,
     Recommendation,
     Decision,
@@ -28,6 +29,7 @@ from src.database.schemas import (
     InventoryUpdate,
     SupplyEventCreate,
     PredictionCreate,
+    RiskAssessmentCreate,
     OptimizationRunCreate,
     RecommendationCreate,
     DecisionCreate,
@@ -211,6 +213,31 @@ def get_predictions_for_event(db: Session, event_id: int) -> List[Prediction]:
         select(Prediction)
         .where(Prediction.event_id == event_id)
         .order_by(Prediction.prediction_timestamp.desc())
+    )
+    return list(db.execute(stmt).scalars().all())
+
+
+# ==========================================
+# 5b. Risk Assessments CRUD
+# ==========================================
+
+def create_risk_assessment(db: Session, assessment: RiskAssessmentCreate) -> RiskAssessment:
+    db_obj = RiskAssessment(**assessment.model_dump())
+    db.add(db_obj)
+    db.commit()
+    db.refresh(db_obj)
+    return db_obj
+
+
+def get_risk_assessment(db: Session, assessment_id: int) -> Optional[RiskAssessment]:
+    return db.get(RiskAssessment, assessment_id)
+
+
+def get_risk_assessments_for_event(db: Session, event_id: int) -> List[RiskAssessment]:
+    stmt = (
+        select(RiskAssessment)
+        .where(RiskAssessment.event_id == event_id)
+        .order_by(RiskAssessment.assessment_timestamp.desc())
     )
     return list(db.execute(stmt).scalars().all())
 

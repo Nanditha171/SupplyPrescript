@@ -197,6 +197,36 @@ class PredictionResponse(PredictionBase):
 
 
 # ==========================================
+# 5b. Risk Assessment Schemas
+# ==========================================
+
+class RiskAssessmentBase(BaseModel):
+    event_id: int = Field(..., description="Referenced Supply Event ID")
+    prediction_id: Optional[int] = Field(None, description="Referenced Prediction ID")
+    delay_risk_score: float = Field(..., ge=0.0, le=1.0, description="Normalized delay risk score")
+    supplier_risk_score: float = Field(..., ge=0.0, le=1.0, description="Normalized supplier risk score")
+    inventory_risk_score: float = Field(..., ge=0.0, le=1.0, description="Normalized inventory risk score")
+    capacity_risk_score: float = Field(..., ge=0.0, le=1.0, description="Normalized capacity risk score")
+    service_risk_score: Optional[float] = Field(None, ge=0.0, le=1.0, description="Normalized service risk score")
+    composite_risk_score: float = Field(..., ge=0.0, le=1.0, description="Weighted composite risk score")
+    risk_level: RiskLevel = Field(..., description="Risk category classification")
+    risk_reasons: str = Field(..., description="Auditable comma-separated or serialized reason codes")
+    configuration_version: str = Field(default="1.0.0", description="Configuration version")
+    assessment_timestamp: datetime = Field(..., description="Assessment execution timestamp")
+
+
+class RiskAssessmentCreate(RiskAssessmentBase):
+    pass
+
+
+class RiskAssessmentResponse(RiskAssessmentBase):
+    id: int
+    created_at: datetime
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+# ==========================================
 # 6. Optimization Run Schemas
 # ==========================================
 

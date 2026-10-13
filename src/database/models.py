@@ -204,6 +204,9 @@ class SupplyEvent(Base):
     predictions: Mapped[List["Prediction"]] = relationship(
         "Prediction", back_populates="event", cascade="all, delete-orphan"
     )
+    risk_assessments: Mapped[List["RiskAssessment"]] = relationship(
+        "RiskAssessment", back_populates="event", cascade="all, delete-orphan"
+    )
     optimization_runs: Mapped[List["OptimizationRun"]] = relationship(
         "OptimizationRun", back_populates="event", cascade="all, delete-orphan"
     )
@@ -246,12 +249,61 @@ class Prediction(Base):
 
     # Relationships
     event: Mapped["SupplyEvent"] = relationship("SupplyEvent", back_populates="predictions")
+    risk_assessments: Mapped[List["RiskAssessment"]] = relationship(
+        "RiskAssessment", back_populates="prediction"
+    )
     optimization_runs: Mapped[List["OptimizationRun"]] = relationship(
         "OptimizationRun", back_populates="prediction", cascade="all, delete-orphan"
     )
 
     def __repr__(self) -> str:
         return f"<Prediction(id={self.id}, model='{self.model_name}', prob={self.delay_probability:.2f}, risk='{self.risk_level}')>"
+
+
+class RiskAssessment(Base):
+    """Represents operational multi-dimensional risk assessments for supply events."""
+
+    __tablename__ = "risk_assessments"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    event_id: Mapped[int] = mapped_column(
+        Integer, ForeignKey("supply_events.id", ondelete="CASCADE"), nullable=False, index=True
+    )
+    prediction_id: Mapped[Optional[int]] = mapped_column(
+        Integer, ForeignKey("predictions.id", ondelete="SET NULL"), nullable=True, index=True
+    )
+    delay_risk_score: Mapped[float] = mapped_column(Float, nullable=False)
+    supplier_risk_score: Mapped[float] = mapped_column(Float, nullable=False)
+    inventory_risk_score: Mapped[float] = mapped_column(Float, nullable=False)
+    capacity_risk_score: Mapped[float] = mapped_column(Float, nullable=False)
+    service_risk_score: Mapped[Optional[float]] = mapped_column(Float, nullable=True)
+    composite_risk_score: Mapped[float] = mapped_column(Float, nullable=False)
+    risk_level: Mapped[str] = mapped_column(String(20), nullable=False, index=True)
+    risk_reasons: Mapped[str] = mapped_column(Text, nullable=False)
+    configuration_version: Mapped[str] = mapped_column(String(50), nullable=False)
+    assessment_timestamp: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False
+    )
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), nullable=False
+    )
+
+    __table_args__ = (
+        CheckConstraint("delay_risk_score >= 0.0 AND delay_risk_score <= 1.0", name="chk_risk_delay_score_range"),
+        CheckConstraint("supplier_risk_score >= 0.0 AND supplier_risk_score <= 1.0", name="chk_risk_supplier_score_range"),
+        CheckConstraint("inventory_risk_score >= 0.0 AND inventory_risk_score <= 1.0", name="chk_risk_inventory_score_range"),
+        CheckConstraint("capacity_risk_score >= 0.0 AND capacity_risk_score <= 1.0", name="chk_risk_capacity_score_range"),
+        CheckConstraint("service_risk_score IS NULL OR (service_risk_score >= 0.0 AND service_risk_score <= 1.0)", name="chk_risk_service_score_range"),
+        CheckConstraint("composite_risk_score >= 0.0 AND composite_risk_score <= 1.0", name="chk_risk_composite_score_range"),
+        CheckConstraint("risk_level IN ('LOW', 'MEDIUM', 'HIGH', 'CRITICAL')", name="chk_risk_level_enum"),
+    )
+
+    # Relationships
+    event: Mapped["SupplyEvent"] = relationship("SupplyEvent", back_populates="risk_assessments")
+    prediction: Mapped[Optional["Prediction"]] = relationship("Prediction", back_populates="risk_assessments")
+
+    def __repr__(self) -> str:
+        return f"<RiskAssessment(id={self.id}, event_id={self.event_id}, composite={self.composite_risk_score:.2f}, level='{self.risk_level}')>"
 
 
 class OptimizationRun(Base):

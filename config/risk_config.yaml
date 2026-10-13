@@ -1,0 +1,68 @@
+# Supply Prescript — Risk Engine Configuration
+# Closed-Loop Prescriptive Analytics (Day 8)
+
+version: "1.0.0"
+approved_date: "2026-10-12"
+
+risk_levels:
+  low:
+    min_score: 0.0
+    max_score: 0.2999
+  medium:
+    min_score: 0.30
+    max_score: 0.5999
+  high:
+    min_score: 0.60
+    max_score: 0.7999
+  critical:
+    min_score: 0.80
+    max_score: 1.00
+
+delay_probability:
+  low_threshold: 0.30
+  medium_threshold: 0.60
+  high_threshold: 0.80
+  # Validated decision threshold approved in Day 7 evaluation (cost-optimal trade-off)
+  classification_threshold: 0.65
+
+supplier:
+  low_reliability_threshold: 0.85
+  critical_reliability_threshold: 0.70
+  high_past_delay_rate_threshold: 0.25
+
+inventory:
+  low_coverage_threshold: 1.0
+  critical_coverage_threshold: 0.5
+
+capacity:
+  moderate_utilization_threshold: 0.70
+  high_utilization_threshold: 0.85
+  critical_utilization_threshold: 1.00
+
+service:
+  criticality_weights:
+    CRITICAL: 1.00
+    HIGH: 0.75
+    MEDIUM: 0.50
+    LOW: 0.25
+
+scoring:
+  delay_weight: 0.40
+  supplier_weight: 0.20
+  inventory_weight: 0.20
+  capacity_weight: 0.10
+  service_weight: 0.10
+  # Missing dimension handling policy: 'renormalize' or 'require_all'
+  missing_dimension_policy: "renormalize"
+
+alerts:
+  high_severity_threshold: 0.60
+  critical_severity_threshold: 0.80
+
+model:
+  model_path: "models/delay_prediction/delay_classifier.joblib"
+  metadata_path: "models/delay_prediction/model_metadata.json"
+  evaluation_metrics_path: "reports/model_evaluation/metrics.json"
+
+data:
+  processed_dataset_path: "data/processed/supply_prescript_processed_dataset.csv"
