@@ -3,6 +3,42 @@
     "recommended_action": "Air freight",
     "estimated_cost": 11170.88,
     "estimated_delay_days": 3.5,
-    "budget": 252719.34600000002,
-    "max_acceptable_delay_days": 9.799999999999999
+    "budget": 252719.35,
+    "max_acceptable_delay_days": 9.8,
+    "alternatives": [
+        {
+            "action": "Regular supply",
+            "cost": 198028.7,
+            "delay": 14.0,
+            "feasible": false,
+            "cost_saving_vs_air_freight": -186857.82,
+            "days_saved_vs_regular": 0.0,
+            "delay_days": 14.0,
+            "recommended": false,
+            "reason": "Exceeds the maximum acceptable delay."
+        },
+        {
+            "action": "Air freight",
+            "cost": 11170.88,
+            "delay": 3.5,
+            "feasible": true,
+            "cost_saving_vs_air_freight": 0.0,
+            "days_saved_vs_regular": 10.5,
+            "delay_days": 3.5,
+            "recommended": true,
+            "reason": "Meets the budget and delay constraints."
+        },
+        {
+            "action": "Secondary supplier",
+            "cost": 229744.86,
+            "delay": 8.4,
+            "feasible": true,
+            "cost_saving_vs_air_freight": -218573.98,
+            "days_saved_vs_regular": 5.6,
+            "delay_days": 8.4,
+            "recommended": false,
+            "reason": "Meets the budget and delay constraints."
+        }
+    ],
+    "optimization_success": true
 }

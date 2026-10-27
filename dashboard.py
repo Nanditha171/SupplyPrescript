@@ -1,3 +1,6 @@
+﻿import json
+from pathlib import Path
+
 import requests
 import pandas as pd
 import streamlit as st
@@ -59,6 +62,7 @@ page = st.sidebar.radio(
         "Dashboard Overview",
         "Predict Shipment Delay",
         "Prediction History",
+        "Prescriptive Recommendations",
     ],
 )
 
@@ -524,6 +528,169 @@ elif page == "Prediction History":
             "No prediction history is available yet. "
             "Submit a shipment prediction first."
         )
+
+
+# --------------------------------------------------
+# PRESCRIPTIVE RECOMMENDATIONS PAGE
+# --------------------------------------------------
+
+elif page == "Prescriptive Recommendations":
+
+    st.header("Prescriptive Recommendations")
+
+    st.write(
+        "Compare supply-chain actions based on estimated cost, "
+        "delivery time, and business constraints."
+    )
+
+    recommendation_path = (
+        Path(__file__).resolve().parent
+        / "reports"
+        / "prescriptive_recommendations.json"
+    )
+
+    if not recommendation_path.exists():
+        st.warning(
+            "Recommendations file not found. "
+            "Run the prescriptive solver first."
+        )
+
+    else:
+        try:
+            recommendation_data = json.loads(
+                recommendation_path.read_text(encoding="utf-8")
+            )
+
+            budget = recommendation_data.get("budget", 0)
+
+            max_delay = recommendation_data.get(
+                "max_acceptable_delay_days", 0
+            )
+
+            alternatives = recommendation_data.get(
+                "alternatives", []
+            )
+
+            col1, col2 = st.columns(2)
+
+            col1.metric(
+                "Available Budget",
+                f"${budget:,.2f}",
+            )
+
+            col2.metric(
+                "Maximum Acceptable Delay",
+                f"{max_delay:.2f} days",
+            )
+
+            st.divider()
+
+            st.subheader("Compare Alternative Actions")
+
+            if alternatives:
+
+                cards = st.columns(3)
+
+                for card, option in zip(cards, alternatives):
+
+                    with card:
+
+                        st.markdown(
+                            f"### {option['action']}"
+                        )
+
+                        if option.get("recommended", False):
+                            st.success("⭐ RECOMMENDED")
+
+                        elif option.get("feasible", False):
+                            st.info("Feasible Alternative")
+
+                        else:
+                            st.error("Not Feasible")
+
+                        cost = float(
+                            option.get("cost", 0)
+                        )
+
+                        delay = float(
+                            option.get(
+                                "delay_days",
+                                option.get("delay", 0),
+                            )
+                        )
+
+                        st.metric(
+                            "Estimated Cost",
+                            f"${cost:,.2f}",
+                        )
+
+                        st.metric(
+                            "Estimated Delay",
+                            f"{delay:.2f} days",
+                        )
+
+                        st.caption(
+                            option.get("reason", "")
+                        )
+
+                        st.caption(
+                            "Days saved vs regular supply: "
+                            f"{option.get('days_saved_vs_regular', 0):.2f}"
+                        )
+
+                        cost_saving = float(
+                            option.get(
+                                "cost_saving_vs_air_freight",
+                                0,
+                            )
+                        )
+
+                        st.caption(
+                            "Cost difference vs air freight: "
+                            f"${-cost_saving:,.2f}"
+                        )
+
+            else:
+                st.warning(
+                    "No alternative actions are available."
+                )
+
+            st.divider()
+
+            if recommendation_data.get("status") == "success":
+
+                st.success(
+                    "Recommended Action: "
+                    f"{recommendation_data['recommended_action']}"
+                )
+
+            else:
+
+                st.error(
+                    recommendation_data.get(
+                        "message",
+                        "No feasible action was found.",
+                    )
+                )
+
+        except (
+            OSError,
+            json.JSONDecodeError,
+            KeyError,
+            TypeError,
+            ValueError,
+        ) as exc:
+
+            st.error(
+                "Unable to load recommendation results."
+            )
+
+            st.caption(str(exc))
+
+
+# --------------------------------------------------
+# FOOTER
+# --------------------------------------------------
 
 st.divider()
 
