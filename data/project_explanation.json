@@ -1,0 +1,84 @@
+{
+  "project_name": "Supply Prescript",
+  "tagline": "Closed-Loop Prescriptive Analytics for Resilient Supply Chain Operations",
+  "version": "1.0.0",
+  "author": "Prasanna (ML & Optimization Lead)",
+  "team": {
+    "Prasanna": "ML (XGBoost) + Prescriptive Optimization (PuLP) + Demo UI + Evaluation",
+    "Trisha": "Backend REST API (FastAPI) + PostgreSQL Database + Write-Back",
+    "Nanditha": "Operational UI & Team Dashboard + Data Dictionary"
+  },
+  "closed_loop_architecture": {
+    "stage_1_predict": {
+      "framework": "XGBoost",
+      "artifacts": ["ml/models/delay_classifier.joblib", "ml/models/delay_regressor.joblib"],
+      "classification_accuracy_pct": 96.1,
+      "regression_mae_days": 0.67,
+      "risk_levels": ["LOW", "MEDIUM", "HIGH", "CRITICAL"],
+      "key_drivers": ["congestion_index", "route_distance_km", "weather_risk_index", "supplier_delay_rate"]
+    },
+    "stage_2_prescribe": {
+      "solver": "PuLP MILP (Mixed-Integer Linear Programming)",
+      "objective": "Minimize total operational mitigation cost",
+      "constraints": [
+        "Maximum budget limit ($)",
+        "Maximum allowable delivery deadline (Days)",
+        "Inventory safety buffer preservation",
+        "Supplier allocation capacity limits"
+      ],
+      "mitigation_options": [
+        {
+          "id": "OPT-A",
+          "name": "Expedited Air Freight",
+          "lead_time_impact": "Fastest arrival (-70% lead time)",
+          "cost_impact": "High premium"
+        },
+        {
+          "id": "OPT-B",
+          "name": "Dual-Sourcing Split (60/40)",
+          "lead_time_impact": "Balanced risk mitigation",
+          "cost_impact": "Moderate split-procurement premium"
+        },
+        {
+          "id": "OPT-C",
+          "name": "Buffer Stock & Port Reroute",
+          "lead_time_impact": "Standard ground lead time",
+          "cost_impact": "Lowest cost alternative"
+        }
+      ]
+    },
+    "stage_3_decide": {
+      "role": "Human-in-the-Loop Supply Chain Operator",
+      "method": "Multi-criteria selection evaluating Cost vs. Lead Time trade-offs",
+      "write_back": "Logged to database operational audit trail"
+    },
+    "stage_4_execute": {
+      "action": "Simulated or actual dispatch in ERP / Logistics system",
+      "status": "IN_TRANSIT_MITIGATED"
+    },
+    "stage_5_measure": {
+      "metrics_tracked": [
+        "Cost Variance Delta ($ actual vs. predicted)",
+        "SLA Recovery Rate (%)",
+        "Delay Avoided (Days)",
+        "Operational Return on Investment (ROI)"
+      ]
+    },
+    "stage_6_learn": {
+      "feedback_store": "data/closed_loop_history.json",
+      "learning_mechanism": "Calibrates optimization safety margins and retraining sample weights"
+    }
+  },
+  "execution_steps": {
+    "run_tests": ".\\venv\\Scripts\\pytest.exe",
+    "run_demo_ui": ".\\venv\\Scripts\\python.exe run_demo.py",
+    "run_streamlit_direct": ".\\venv\\Scripts\\streamlit.exe run frontend/app.py",
+    "run_fastapi_backend": ".\\venv\\Scripts\\python.exe -m uvicorn api.main:app --host 127.0.0.1 --port 8000 --reload"
+  },
+  "dashboard_tabs": [
+    "1. Live Demo Flow (Steps 1 to 5)",
+    "2. Model Performance & Metrics",
+    "3. Optimization Hard-Constraints Audit",
+    "4. Closed-Loop History & Retraining"
+  ]
+}

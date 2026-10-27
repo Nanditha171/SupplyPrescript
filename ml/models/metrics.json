@@ -1,0 +1,145 @@
+{
+  "classification": {
+    "accuracy": 0.9614,
+    "precision": 0.9772,
+    "recall": 0.9068,
+    "f1_score": 0.9407,
+    "roc_auc": 0.996,
+    "confusion_matrix": [
+      [
+        459,
+        5
+      ],
+      [
+        22,
+        214
+      ]
+    ]
+  },
+  "regression": {
+    "mae": 0.673,
+    "rmse": 1.0628,
+    "r2_score": 0.8169
+  },
+  "feature_importances": [
+    {
+      "feature": "risk_multiplier",
+      "importance": 0.1492
+    },
+    {
+      "feature": "supplier_tier_Tier-1",
+      "importance": 0.1401
+    },
+    {
+      "feature": "route_distance_km",
+      "importance": 0.0985
+    },
+    {
+      "feature": "shipping_mode_Standard Ground",
+      "importance": 0.0798
+    },
+    {
+      "feature": "supplier_delay_rate",
+      "importance": 0.079
+    },
+    {
+      "feature": "supplier_tier_Tier-3",
+      "importance": 0.072
+    },
+    {
+      "feature": "inventory_coverage_ratio",
+      "importance": 0.069
+    },
+    {
+      "feature": "congestion_index",
+      "importance": 0.0686
+    },
+    {
+      "feature": "shipping_mode_Ocean Intermodal",
+      "importance": 0.0615
+    },
+    {
+      "feature": "weather_risk_index",
+      "importance": 0.0393
+    },
+    {
+      "feature": "lead_time_days",
+      "importance": 0.0198
+    },
+    {
+      "feature": "lead_time_to_distance_ratio",
+      "importance": 0.0193
+    },
+    {
+      "feature": "inventory_level",
+      "importance": 0.0176
+    },
+    {
+      "feature": "product_category_Pharmaceuticals",
+      "importance": 0.0149
+    },
+    {
+      "feature": "shipping_cost",
+      "importance": 0.0134
+    },
+    {
+      "feature": "product_category_Industrial Machinery",
+      "importance": 0.0129
+    },
+    {
+      "feature": "product_category_Consumer Electronics",
+      "importance": 0.011
+    },
+    {
+      "feature": "order_quantity",
+      "importance": 0.0103
+    },
+    {
+      "feature": "shipping_mode_Express Carrier",
+      "importance": 0.0081
+    },
+    {
+      "feature": "supplier_tier_Tier-2",
+      "importance": 0.0079
+    },
+    {
+      "feature": "product_category_Automotive Assemblies",
+      "importance": 0.0046
+    },
+    {
+      "feature": "product_category_Semiconductors & Electronics",
+      "importance": 0.0031
+    },
+    {
+      "feature": "shipping_mode_Air Freight",
+      "importance": 0.0
+    }
+  ],
+  "training_samples": 2800,
+  "testing_samples": 700,
+  "feature_names": [
+    "lead_time_days",
+    "shipping_cost",
+    "inventory_level",
+    "order_quantity",
+    "supplier_delay_rate",
+    "route_distance_km",
+    "weather_risk_index",
+    "congestion_index",
+    "lead_time_to_distance_ratio",
+    "inventory_coverage_ratio",
+    "risk_multiplier",
+    "shipping_mode_Air Freight",
+    "shipping_mode_Express Carrier",
+    "shipping_mode_Ocean Intermodal",
+    "shipping_mode_Standard Ground",
+    "product_category_Automotive Assemblies",
+    "product_category_Consumer Electronics",
+    "product_category_Industrial Machinery",
+    "product_category_Pharmaceuticals",
+    "product_category_Semiconductors & Electronics",
+    "supplier_tier_Tier-1",
+    "supplier_tier_Tier-2",
+    "supplier_tier_Tier-3"
+  ]
+}

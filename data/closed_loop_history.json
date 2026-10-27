@@ -1,0 +1,492 @@
+[
+  {
+    "event_id": "EVT-0014",
+    "timestamp": "2026-10-27T18:56:40.466971",
+    "shipment_id": "TEST-SHP-001",
+    "supplier_name": "Test Supplier",
+    "product_category": "Standard Goods",
+    "shipping_mode": "Standard Ground",
+    "lead_time_days": 0.0,
+    "order_quantity": 0,
+    "shipping_cost": 5000.0,
+    "prediction": {
+      "is_delayed": 1,
+      "delay_probability": 0.85,
+      "predicted_delay_days": 6.0,
+      "risk_level": "HIGH"
+    },
+    "decision": {
+      "option_id": "OPTION_B",
+      "name": "Secondary Supplier",
+      "cost": 7500.0,
+      "delivery_days": 5.0
+    },
+    "actual_outcome": {
+      "actual_cost": 7400.0,
+      "actual_delivery_days": 5.0,
+      "notes": "On-time arrival"
+    },
+    "evaluation": {
+      "cost_variance": -100.0,
+      "delivery_variance_days": 0.0,
+      "mitigation_roi_pct": 72.3,
+      "qualitative_outcome": "Outstanding Execution: Completed under budget and on/ahead of schedule.",
+      "outcome_category": "SUCCESS_HIGH_ROI"
+    }
+  },
+  {
+    "event_id": "EVT-0013",
+    "timestamp": "2026-10-27T18:55:53.344900",
+    "shipment_id": "TEST-SHP-001",
+    "supplier_name": "Test Supplier",
+    "product_category": "Standard Goods",
+    "shipping_mode": "Standard Ground",
+    "lead_time_days": 0.0,
+    "order_quantity": 0,
+    "shipping_cost": 5000.0,
+    "prediction": {
+      "is_delayed": 1,
+      "delay_probability": 0.85,
+      "predicted_delay_days": 6.0,
+      "risk_level": "HIGH"
+    },
+    "decision": {
+      "option_id": "OPTION_B",
+      "name": "Secondary Supplier",
+      "cost": 7500.0,
+      "delivery_days": 5.0
+    },
+    "actual_outcome": {
+      "actual_cost": 7400.0,
+      "actual_delivery_days": 5.0,
+      "notes": "On-time arrival"
+    },
+    "evaluation": {
+      "cost_variance": -100.0,
+      "delivery_variance_days": 0.0,
+      "mitigation_roi_pct": 72.3,
+      "qualitative_outcome": "Outstanding Execution: Completed under budget and on/ahead of schedule.",
+      "outcome_category": "SUCCESS_HIGH_ROI"
+    }
+  },
+  {
+    "event_id": "EVT-0012",
+    "timestamp": "2026-10-27T18:54:57.716808",
+    "shipment_id": "TEST-SHP-001",
+    "supplier_name": "Test Supplier",
+    "product_category": "Standard Goods",
+    "shipping_mode": "Standard Ground",
+    "lead_time_days": 0.0,
+    "order_quantity": 0,
+    "shipping_cost": 5000.0,
+    "prediction": {
+      "is_delayed": 1,
+      "delay_probability": 0.85,
+      "predicted_delay_days": 6.0,
+      "risk_level": "HIGH"
+    },
+    "decision": {
+      "option_id": "OPTION_B",
+      "name": "Secondary Supplier",
+      "cost": 7500.0,
+      "delivery_days": 5.0
+    },
+    "actual_outcome": {
+      "actual_cost": 7400.0,
+      "actual_delivery_days": 5.0,
+      "notes": "On-time arrival"
+    },
+    "evaluation": {
+      "cost_variance": -100.0,
+      "delivery_variance_days": 0.0,
+      "mitigation_roi_pct": 72.3,
+      "qualitative_outcome": "Outstanding Execution: Completed under budget and on/ahead of schedule.",
+      "outcome_category": "SUCCESS_HIGH_ROI"
+    }
+  },
+  {
+    "event_id": "EVT-0011",
+    "timestamp": "2026-10-27T18:38:12.062000",
+    "shipment_id": "TEST-SHP-001",
+    "supplier_name": "Test Supplier",
+    "product_category": "Standard Goods",
+    "shipping_mode": "Standard Ground",
+    "lead_time_days": 0.0,
+    "order_quantity": 0,
+    "shipping_cost": 5000.0,
+    "prediction": {
+      "is_delayed": 1,
+      "delay_probability": 0.85,
+      "predicted_delay_days": 6.0,
+      "risk_level": "HIGH"
+    },
+    "decision": {
+      "option_id": "OPTION_B",
+      "name": "Secondary Supplier",
+      "cost": 7500.0,
+      "delivery_days": 5.0
+    },
+    "actual_outcome": {
+      "actual_cost": 7400.0,
+      "actual_delivery_days": 5.0,
+      "notes": "On-time arrival"
+    },
+    "evaluation": {
+      "cost_variance": -100.0,
+      "delivery_variance_days": 0.0,
+      "mitigation_roi_pct": 72.3,
+      "qualitative_outcome": "Outstanding Execution: Completed under budget and on/ahead of schedule.",
+      "outcome_category": "SUCCESS_HIGH_ROI"
+    }
+  },
+  {
+    "event_id": "EVT-0010",
+    "timestamp": "2026-10-27T18:34:37.909670",
+    "shipment_id": "TEST-SHP-001",
+    "supplier_name": "Test Supplier",
+    "product_category": "Standard Goods",
+    "shipping_mode": "Standard Ground",
+    "lead_time_days": 0.0,
+    "order_quantity": 0,
+    "shipping_cost": 5000.0,
+    "prediction": {
+      "is_delayed": 1,
+      "delay_probability": 0.85,
+      "predicted_delay_days": 6.0,
+      "risk_level": "HIGH"
+    },
+    "decision": {
+      "option_id": "OPTION_B",
+      "name": "Secondary Supplier",
+      "cost": 7500.0,
+      "delivery_days": 5.0
+    },
+    "actual_outcome": {
+      "actual_cost": 7400.0,
+      "actual_delivery_days": 5.0,
+      "notes": "On-time arrival"
+    },
+    "evaluation": {
+      "cost_variance": -100.0,
+      "delivery_variance_days": 0.0,
+      "mitigation_roi_pct": 72.3,
+      "qualitative_outcome": "Outstanding Execution: Completed under budget and on/ahead of schedule.",
+      "outcome_category": "SUCCESS_HIGH_ROI"
+    }
+  },
+  {
+    "event_id": "EVT-0009",
+    "timestamp": "2026-10-27T18:34:19.583671",
+    "shipment_id": "TEST-SHP-001",
+    "supplier_name": "Test Supplier",
+    "product_category": "Standard Goods",
+    "shipping_mode": "Standard Ground",
+    "lead_time_days": 0.0,
+    "order_quantity": 0,
+    "shipping_cost": 5000.0,
+    "prediction": {
+      "is_delayed": 1,
+      "delay_probability": 0.85,
+      "predicted_delay_days": 6.0,
+      "risk_level": "HIGH"
+    },
+    "decision": {
+      "option_id": "OPTION_B",
+      "name": "Secondary Supplier",
+      "cost": 7500.0,
+      "delivery_days": 5.0
+    },
+    "actual_outcome": {
+      "actual_cost": 7400.0,
+      "actual_delivery_days": 5.0,
+      "notes": "On-time arrival"
+    },
+    "evaluation": {
+      "cost_variance": -100.0,
+      "delivery_variance_days": 0.0,
+      "mitigation_roi_pct": 72.3,
+      "qualitative_outcome": "Outstanding Execution: Completed under budget and on/ahead of schedule.",
+      "outcome_category": "SUCCESS_HIGH_ROI"
+    }
+  },
+  {
+    "event_id": "EVT-0008",
+    "timestamp": "2026-10-11T20:26:45.154106",
+    "shipment_id": "TEST-SHP-001",
+    "supplier_name": "Test Supplier",
+    "product_category": "Standard Goods",
+    "shipping_mode": "Standard Ground",
+    "lead_time_days": 0.0,
+    "order_quantity": 0,
+    "shipping_cost": 5000.0,
+    "prediction": {
+      "is_delayed": 1,
+      "delay_probability": 0.85,
+      "predicted_delay_days": 6.0,
+      "risk_level": "HIGH"
+    },
+    "decision": {
+      "option_id": "OPTION_B",
+      "name": "Secondary Supplier",
+      "cost": 7500.0,
+      "delivery_days": 5.0
+    },
+    "actual_outcome": {
+      "actual_cost": 7400.0,
+      "actual_delivery_days": 5.0,
+      "notes": "On-time arrival"
+    },
+    "evaluation": {
+      "cost_variance": -100.0,
+      "delivery_variance_days": 0.0,
+      "mitigation_roi_pct": 72.3,
+      "qualitative_outcome": "Outstanding Execution: Completed under budget and on/ahead of schedule.",
+      "outcome_category": "SUCCESS_HIGH_ROI"
+    }
+  },
+  {
+    "event_id": "EVT-0007",
+    "timestamp": "2026-10-01T18:46:00.054914",
+    "shipment_id": "TEST-SHP-001",
+    "supplier_name": "Test Supplier",
+    "product_category": "Standard Goods",
+    "shipping_mode": "Standard Ground",
+    "lead_time_days": 0.0,
+    "order_quantity": 0,
+    "shipping_cost": 5000.0,
+    "prediction": {
+      "is_delayed": 1,
+      "delay_probability": 0.85,
+      "predicted_delay_days": 6.0,
+      "risk_level": "HIGH"
+    },
+    "decision": {
+      "option_id": "OPTION_B",
+      "name": "Secondary Supplier",
+      "cost": 7500.0,
+      "delivery_days": 5.0
+    },
+    "actual_outcome": {
+      "actual_cost": 7400.0,
+      "actual_delivery_days": 5.0,
+      "notes": "On-time arrival"
+    },
+    "evaluation": {
+      "cost_variance": -100.0,
+      "delivery_variance_days": 0.0,
+      "mitigation_roi_pct": 72.3,
+      "qualitative_outcome": "Outstanding Execution: Completed under budget and on/ahead of schedule.",
+      "outcome_category": "SUCCESS_HIGH_ROI"
+    }
+  },
+  {
+    "event_id": "EVT-0006",
+    "timestamp": "2026-10-01T18:34:30.156957",
+    "shipment_id": "TEST-SHP-001",
+    "supplier_name": "Test Supplier",
+    "product_category": "Standard Goods",
+    "shipping_mode": "Standard Ground",
+    "lead_time_days": 0.0,
+    "order_quantity": 0,
+    "shipping_cost": 5000.0,
+    "prediction": {
+      "is_delayed": 1,
+      "delay_probability": 0.85,
+      "predicted_delay_days": 6.0,
+      "risk_level": "HIGH"
+    },
+    "decision": {
+      "option_id": "OPTION_B",
+      "name": "Secondary Supplier",
+      "cost": 7500.0,
+      "delivery_days": 5.0
+    },
+    "actual_outcome": {
+      "actual_cost": 7400.0,
+      "actual_delivery_days": 5.0,
+      "notes": "On-time arrival"
+    },
+    "evaluation": {
+      "cost_variance": -100.0,
+      "delivery_variance_days": 0.0,
+      "mitigation_roi_pct": 72.3,
+      "qualitative_outcome": "Outstanding Execution: Completed under budget and on/ahead of schedule.",
+      "outcome_category": "SUCCESS_HIGH_ROI"
+    }
+  },
+  {
+    "event_id": "EVT-0005",
+    "timestamp": "2026-10-01T18:33:28.840563",
+    "shipment_id": "TEST-SHP-001",
+    "supplier_name": "Test Supplier",
+    "product_category": "Standard Goods",
+    "shipping_mode": "Standard Ground",
+    "lead_time_days": 0.0,
+    "order_quantity": 0,
+    "shipping_cost": 5000.0,
+    "prediction": {
+      "is_delayed": 1,
+      "delay_probability": 0.85,
+      "predicted_delay_days": 6.0,
+      "risk_level": "HIGH"
+    },
+    "decision": {
+      "option_id": "OPTION_B",
+      "name": "Secondary Supplier",
+      "cost": 7500.0,
+      "delivery_days": 5.0
+    },
+    "actual_outcome": {
+      "actual_cost": 7400.0,
+      "actual_delivery_days": 5.0,
+      "notes": "On-time arrival"
+    },
+    "evaluation": {
+      "cost_variance": -100.0,
+      "delivery_variance_days": 0.0,
+      "mitigation_roi_pct": 72.3,
+      "qualitative_outcome": "Outstanding Execution: Completed under budget and on/ahead of schedule.",
+      "outcome_category": "SUCCESS_HIGH_ROI"
+    }
+  },
+  {
+    "event_id": "EVT-0004",
+    "timestamp": "2026-10-01T18:33:01.339124",
+    "shipment_id": "TEST-SHP-001",
+    "supplier_name": "Test Supplier",
+    "product_category": "Standard Goods",
+    "shipping_mode": "Standard Ground",
+    "lead_time_days": 0.0,
+    "order_quantity": 0,
+    "shipping_cost": 5000.0,
+    "prediction": {
+      "is_delayed": 1,
+      "delay_probability": 0.85,
+      "predicted_delay_days": 6.0,
+      "risk_level": "HIGH"
+    },
+    "decision": {
+      "option_id": "OPTION_B",
+      "name": "Secondary Supplier",
+      "cost": 7500.0,
+      "delivery_days": 5.0
+    },
+    "actual_outcome": {
+      "actual_cost": 7400.0,
+      "actual_delivery_days": 5.0,
+      "notes": "On-time arrival"
+    },
+    "evaluation": {
+      "cost_variance": -100.0,
+      "delivery_variance_days": 0.0,
+      "mitigation_roi_pct": 72.3,
+      "qualitative_outcome": "Outstanding Execution: Completed under budget and on/ahead of schedule.",
+      "outcome_category": "SUCCESS_HIGH_ROI"
+    }
+  },
+  {
+    "event_id": "EVT-0003",
+    "timestamp": "2026-10-01T18:18:42.539432",
+    "shipment_id": "TEST-SHP-001",
+    "supplier_name": "Test Supplier",
+    "product_category": "Standard Goods",
+    "shipping_mode": "Standard Ground",
+    "lead_time_days": 0.0,
+    "order_quantity": 0,
+    "shipping_cost": 5000.0,
+    "prediction": {
+      "is_delayed": 1,
+      "delay_probability": 0.85,
+      "predicted_delay_days": 6.0,
+      "risk_level": "HIGH"
+    },
+    "decision": {
+      "option_id": "OPTION_B",
+      "name": "Secondary Supplier",
+      "cost": 7500.0,
+      "delivery_days": 5.0
+    },
+    "actual_outcome": {
+      "actual_cost": 7400.0,
+      "actual_delivery_days": 5.0,
+      "notes": "On-time arrival"
+    },
+    "evaluation": {
+      "cost_variance": -100.0,
+      "delivery_variance_days": 0.0,
+      "mitigation_roi_pct": 72.3,
+      "qualitative_outcome": "Outstanding Execution: Completed under budget and on/ahead of schedule.",
+      "outcome_category": "SUCCESS_HIGH_ROI"
+    }
+  },
+  {
+    "event_id": "EVT-0002",
+    "timestamp": "2026-10-01T18:17:36.595479",
+    "shipment_id": "TEST-SHP-001",
+    "supplier_name": "Test Supplier",
+    "product_category": "Standard Goods",
+    "shipping_mode": "Standard Ground",
+    "lead_time_days": 0.0,
+    "order_quantity": 0,
+    "shipping_cost": 5000.0,
+    "prediction": {
+      "is_delayed": 1,
+      "delay_probability": 0.85,
+      "predicted_delay_days": 6.0,
+      "risk_level": "HIGH"
+    },
+    "decision": {
+      "option_id": "OPTION_B",
+      "name": "Secondary Supplier",
+      "cost": 7500.0,
+      "delivery_days": 5.0
+    },
+    "actual_outcome": {
+      "actual_cost": 7400.0,
+      "actual_delivery_days": 5.0,
+      "notes": "On-time arrival"
+    },
+    "evaluation": {
+      "cost_variance": -100.0,
+      "delivery_variance_days": 0.0,
+      "mitigation_roi_pct": 72.3,
+      "qualitative_outcome": "Outstanding Execution: Completed under budget and on/ahead of schedule.",
+      "outcome_category": "SUCCESS_HIGH_ROI"
+    }
+  },
+  {
+    "event_id": "EVT-0001",
+    "timestamp": "2026-10-01T18:17:12.534228",
+    "shipment_id": "TEST-SHP-001",
+    "supplier_name": "Test Supplier",
+    "product_category": "Standard Goods",
+    "shipping_mode": "Standard Ground",
+    "lead_time_days": 0.0,
+    "order_quantity": 0,
+    "shipping_cost": 5000.0,
+    "prediction": {
+      "is_delayed": 1,
+      "delay_probability": 0.85,
+      "predicted_delay_days": 6.0,
+      "risk_level": "HIGH"
+    },
+    "decision": {
+      "option_id": "OPTION_B",
+      "name": "Secondary Supplier",
+      "cost": 7500.0,
+      "delivery_days": 5.0
+    },
+    "actual_outcome": {
+      "actual_cost": 7400.0,
+      "actual_delivery_days": 5.0,
+      "notes": "On-time arrival"
+    },
+    "evaluation": {
+      "cost_variance": -100.0,
+      "delivery_variance_days": 0.0,
+      "mitigation_roi_pct": 72.3,
+      "qualitative_outcome": "Outstanding Execution: Completed under budget and on/ahead of schedule.",
+      "outcome_category": "SUCCESS_HIGH_ROI"
+    }
+  }
+]
