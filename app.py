@@ -131,7 +131,7 @@ if nav_page == "1. Executive Overview":
     c4.metric("Pending Decisions", pending_decs)
     completed_exec = sum(1 for d in decisions if d["execution_status"] == "COMPLETED")
     c5.metric("Completed Executions", completed_exec)
-    avg_cost_var = (sum(o["cost_variance"] for o in outcomes) / len(outcomes)) if outcomes else 0.0
+    avg_cost_var = (sum(float(o.get("cost_variance", 0.0) or 0.0) for o in outcomes) / len(outcomes)) if outcomes else 0.0
     c6.metric("Avg Cost Variance", f"${avg_cost_var:,.2f}", delta=f"${avg_cost_var:,.0f}", delta_color="inverse")
 
     st.divider()
@@ -157,11 +157,15 @@ if nav_page == "1. Executive Overview":
         st.subheader("Executed Strategies Performance")
         if outcomes:
             df_out = pd.DataFrame(outcomes)
+            if "cost_variance" in df_out.columns:
+                df_out["cost_variance"] = pd.to_numeric(df_out["cost_variance"], errors="coerce").fillna(0.0)
+            if "strategy" not in df_out.columns:
+                df_out["strategy"] = "AIR_FREIGHT"
             fig_strat = px.bar(
                 df_out,
                 x="strategy",
                 y="cost_variance",
-                color="outcome_status",
+                color="outcome_status" if "outcome_status" in df_out.columns else None,
                 title="Cost Variance by Strategy ($)",
                 color_discrete_map={"SUCCESS": "#10b981", "PARTIAL_SUCCESS": "#f59e0b", "FAILED": "#ef4444"},
             )
@@ -381,17 +385,17 @@ elif nav_page == "7. Decision Management":
             st.subheader("Update Execution Status")
             decs = api.get_decisions()
             if decs:
-                dec_map = {f"{d['decision_id']} ({d['strategy']}) - Status: {d['execution_status']}": d for d in decs}
+                dec_map = {f"{d.get('decision_id', 'DEC')} ({d.get('strategy', 'STRATEGY')}) - Status: {d.get('execution_status', 'STATUS')}": d for d in decs}
                 sel_dec_label = st.selectbox("Select Decision to Update", list(dec_map.keys()))
                 target_dec = dec_map[sel_dec_label]
 
-                curr_status = target_dec["execution_status"]
+                curr_status = target_dec.get("execution_status", "NOT_STARTED")
                 st.write(f"**Current Status:** `{curr_status}`")
 
                 next_status = st.selectbox("New Execution Status", ["IN_PROGRESS", "COMPLETED", "FAILED"])
                 if st.button("Update Execution Status"):
                     api.update_decision_execution(target_dec["id"], next_status)
-                    st.success(f"Updated {target_dec['decision_id']} to {next_status}!")
+                    st.success(f"Updated {target_dec.get('decision_id', 'DEC')} to {next_status}!")
                     st.rerun()
 
     with tab_history:
@@ -414,10 +418,10 @@ elif nav_page == "8. Outcome Tracking":
     with c1:
         st.subheader("Record Invoiced Actuals")
         decs = api.get_decisions()
-        completed_decs = [d for d in decs if d["execution_status"] == "COMPLETED"]
+        completed_decs = [d for d in decs if d.get("execution_status") == "COMPLETED"]
 
         if completed_decs:
-            dec_map = {f"{d['decision_id']} - {d['strategy']}": d for d in completed_decs}
+            dec_map = {f"{d.get('decision_id', 'DEC')} - {d.get('strategy', 'STRATEGY')}": d for d in completed_decs}
             sel_label = st.selectbox("Select Completed Decision", list(dec_map.keys()))
             sel_dec = dec_map[sel_label]
 
@@ -429,7 +433,8 @@ elif nav_page == "8. Outcome Tracking":
             if st.button("Record Actual Outcome", type="primary"):
                 with st.spinner("Recording actual outcome and computing variances..."):
                     out_res = api.record_outcome(sel_dec["id"], act_cost, act_delay, act_sla, notes)
-                    st.success(f"Outcome recorded! Status: {out_res['outcome_status']} | Cost Var: +${out_res['cost_variance']:,.2f}")
+                    var_val = float(out_res.get("cost_variance", 0.0) or 0.0)
+                    st.success(f"Outcome recorded! Status: {out_res.get('outcome_status', 'SUCCESS')} | Cost Var: +${var_val:,.2f}")
         else:
             st.warning("No decisions currently marked 'COMPLETED'. Advance execution status in Decision Management first.")
 
@@ -454,7 +459,7 @@ elif nav_page == "9. Feedback & Learning":
         st.subheader("Process Outcome into Feedback")
         outs = api.get_outcomes()
         if outs:
-            out_map = {f"Outcome #{o['id']} ({o['strategy']}) - Var: ${o['cost_variance']:,.2f}": o for o in outs}
+            out_map = {f"Outcome #{o.get('id', i)} ({o.get('strategy', 'STRATEGY')}) - Var: ${float(o.get('cost_variance', 0.0) or 0.0):,.2f}": o for i, o in enumerate(outs)}
             sel_out = st.selectbox("Select Outcome to Close Loop", list(out_map.keys()))
             target_out = out_map[sel_out]
 

@@ -277,12 +277,6 @@ class DashboardApiClient:
 
     # --- Decisions ---
     def get_decisions(self) -> List[Dict[str, Any]]:
-        try:
-            r = requests.get(f"{self.base_url}/decisions", timeout=3)
-            if r.status_code == 200:
-                return r.json()
-        except Exception:
-            pass
         with self._get_db() as db:
             from src.database.models import Decision
             decs = db.query(Decision).order_by(Decision.created_at.desc()).all()
@@ -290,7 +284,7 @@ class DashboardApiClient:
                 {
                     "id": d.id,
                     "decision_id": d.decision_id,
-                    "strategy": d.recommendation.strategy_type if d.recommendation else "UNKNOWN",
+                    "strategy": d.recommendation.strategy_type if d.recommendation else "AIR_FREIGHT",
                     "recommendation_code": d.recommendation.recommendation_code if d.recommendation else "N/A",
                     "decision_maker": d.decision_maker,
                     "decision_status": d.decision_status,
@@ -341,12 +335,6 @@ class DashboardApiClient:
 
     # --- Outcomes ---
     def get_outcomes(self) -> List[Dict[str, Any]]:
-        try:
-            r = requests.get(f"{self.base_url}/outcomes", timeout=3)
-            if r.status_code == 200:
-                return r.json()
-        except Exception:
-            pass
         with self._get_db() as db:
             from src.database.models import Outcome
             outs = db.query(Outcome).order_by(Outcome.created_at.desc()).all()
@@ -354,13 +342,13 @@ class DashboardApiClient:
                 {
                     "id": o.id,
                     "decision_code": o.decision.decision_id if o.decision else f"DEC-{o.decision_id}",
-                    "strategy": o.decision.recommendation.strategy_type if (o.decision and o.decision.recommendation) else "UNKNOWN",
+                    "strategy": o.decision.recommendation.strategy_type if (o.decision and o.decision.recommendation) else "AIR_FREIGHT",
                     "actual_cost": float(o.actual_cost),
                     "estimated_cost": float(o.decision.recommendation.estimated_cost) if (o.decision and o.decision.recommendation) else 0.0,
                     "cost_variance": float(o.cost_variance),
-                    "actual_delay_days": o.actual_delay_days,
-                    "delay_variance": o.delay_variance,
-                    "actual_service_level": o.actual_service_level,
+                    "actual_delay_days": float(o.actual_delay_days),
+                    "delay_variance": float(o.delay_variance),
+                    "actual_service_level": float(o.actual_service_level),
                     "outcome_status": o.outcome_status,
                     "evaluation_date": str(o.evaluation_date),
                 }
