@@ -49,12 +49,15 @@ def get_active_seeding_engine_and_session():
         return seed_engine, SeedSession
 
 
-def seed_database():
+def seed_database(target_engine=None, session_factory=None):
     print("============================================================")
     print("      SUPPLY PRESCRIPT - DATABASE SEEDER                    ")
     print("============================================================")
 
-    engine, session_factory = get_active_seeding_engine_and_session()
+    if target_engine is not None and session_factory is not None:
+        engine, session_factory = target_engine, session_factory
+    else:
+        engine, session_factory = get_active_seeding_engine_and_session()
     Base.metadata.create_all(bind=engine)
     db = session_factory()
 
