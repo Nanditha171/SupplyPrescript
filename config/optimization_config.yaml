@@ -1,0 +1,77 @@
+# Supply Prescript — Optimization Engine Configuration
+# Prescriptive Optimization & Linear Programming (Day 10)
+
+version: "1.0.0"
+approved_date: "2026-10-14"
+
+# Default solver settings
+solver:
+  name: "PULP_CBC"
+  time_limit_seconds: 30
+  msg: false
+
+# Operational parameters & cost models
+cost_models:
+  # Air freight expedited logistics
+  air_freight:
+    fixed_setup_cost: 2500.00
+    variable_cost_per_unit: 12.50
+    benchmark_fixed_cost: 15000.00 # Standard benchmark for EVT-001 scenario
+    lead_time_days: 2.0
+    risk_factor: 0.08
+    max_capacity_units: 25000
+
+  # Secondary supplier emergency sourcing
+  secondary_supplier:
+    premium_percentage: 0.10 # 10% premium over primary supplier unit cost
+    default_lead_time_days: 7.0
+    risk_factor: 0.15
+    min_allocation_units: 100
+
+  # Launch delay / Postponement
+  launch_delay:
+    daily_postponement_cost: 1200.00 # Daily revenue/operational penalty
+    fixed_impact_cost: 5000.00 # Brand and marketing rescheduling penalty
+    risk_factor: 0.35
+    max_delay_days_allowed: 30.0
+
+  # Unmet demand shortage penalty
+  shortage:
+    penalty_per_unit: 250.00
+    critical_penalty_multiplier: 2.0
+
+# Service level requirements
+service_level:
+  default_target: 0.95
+  critical_target: 0.99
+  high_target: 0.95
+  medium_target: 0.90
+  low_target: 0.85
+
+# Multi-objective optimization weights
+objective_weights:
+  MIN_COST:
+    cost_weight: 1.00
+    risk_weight: 0.00
+    time_weight: 0.00
+  MIN_RISK:
+    cost_weight: 0.20
+    risk_weight: 0.60
+    time_weight: 0.20
+  MIN_DELAY:
+    cost_weight: 0.20
+    risk_weight: 0.20
+    time_weight: 0.60
+  BALANCED:
+    cost_weight: 0.34
+    risk_weight: 0.33
+    time_weight: 0.33
+
+# Closed-loop feedback learning parameters and safeguards
+learning:
+  default_alpha: 0.20 # Exponentially weighted moving average learning rate
+  min_observations_required: 3 # Minimum samples before applying learned multiplier
+  max_adjustment_ratio: 0.30 # Maximum ±30% deviation from baseline
+  lower_bound_multiplier: 0.70
+  upper_bound_multiplier: 1.30
+
